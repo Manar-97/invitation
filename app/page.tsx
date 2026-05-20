@@ -128,21 +128,25 @@ export default function WeddingLandingPage() {
       </div>
 
       {/* HERO */}
-      <section
-        className="relative min-h-screen bg-cover bg-center flex items-center justify-center px-4"
-        style={{
-          backgroundImage:
-            "url('https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=1600&auto=format&fit=crop')",
-        }}
-      >
+      <section className="relative min-h-[100svh] flex items-center justify-center overflow-hidden px-4">
+
+        {/* Background Image FIX */}
+        <img
+          src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=1600&auto=format&fit=crop"
+          className="absolute inset-0 w-full h-full object-cover"
+          alt="hero"
+        />
+
+        {/* Overlay */}
         <div className="absolute inset-0 bg-black/40" />
 
-        <div className="relative z-10 text-center px-6">
+        {/* Content */}
+        <div className="relative z-10 text-center px-4">
           <p className="uppercase tracking-[6px] text-white text-sm md:text-base mb-4">
             {t.hero}
           </p>
 
-          <h1 className="text-4xl sm:text-5xl md:text-8xl font-serif text-white mb-6 leading-tight px-2">
+          <h1 className="text-4xl sm:text-5xl md:text-8xl font-serif text-white mb-6 leading-tight">
             {t.bridename}
           </h1>
 
@@ -254,26 +258,22 @@ export default function WeddingLandingPage() {
       </section>
 
       {/* RSVP */}
-      <section className="max-w-4xl mx-auto px-6 py-24">
-        <div className="bg-white p-10 md:p-16 rounded-[40px] shadow-2xl">
-          <h2 className="text-4xl font-serif text-center mb-10">
+      <section className="max-w-4xl mx-auto px-4 py-20">
+        <div className="bg-white p-6 md:p-16 rounded-[30px] shadow-2xl">
+
+          <h2 className="text-3xl md:text-4xl font-serif text-center mb-10">
             {t.confirm}
           </h2>
 
           <form
-            className="space-y-6"
+            className="space-y-6 w-full"
             onSubmit={(e) => {
               e.preventDefault();
 
               const form = e.currentTarget;
 
-              const name = (
-                form.elements.namedItem("name") as HTMLInputElement
-              ).value;
-
-              const message = (
-                form.elements.namedItem("message") as HTMLTextAreaElement
-              ).value;
+              const name = (form.elements.namedItem("name") as HTMLInputElement).value;
+              const message = (form.elements.namedItem("message") as HTMLTextAreaElement).value;
 
               const whatsappMessage = `
 💍 RSVP
@@ -281,22 +281,21 @@ export default function WeddingLandingPage() {
 Name: ${name}
 Message:
 ${message}
-`;
+        `;
 
               const phone = "201021319988";
 
-              const url = `https://wa.me/${phone}?text=${encodeURIComponent(
-                whatsappMessage
-              )}`;
+              const url = `https://wa.me/${phone}?text=${encodeURIComponent(whatsappMessage)}`;
 
               window.open(url, "_blank");
             }}
           >
+
             <input
               type="text"
               name="name"
               placeholder={t.yourName}
-              className="w-full border p-4 rounded-2xl"
+              className="w-full border p-4 rounded-2xl text-base focus:outline-none focus:ring-2 focus:ring-[#caa58c]"
               required
             />
 
@@ -304,7 +303,7 @@ ${message}
               rows={5}
               name="message"
               placeholder={t.message}
-              className="w-full border p-4 rounded-2xl"
+              className="w-full border p-4 rounded-2xl text-base focus:outline-none focus:ring-2 focus:ring-[#caa58c]"
             />
 
             <button
@@ -314,6 +313,7 @@ ${message}
               {t.send}
             </button>
           </form>
+
         </div>
       </section>
 
