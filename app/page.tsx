@@ -65,7 +65,6 @@ export default function WeddingLandingPage() {
       memories: "Our Memories",
       confirm: "Confirm Attendance",
       yourName: "Your Name",
-      guests: "Number of Guests",
       message: "Message",
       send: "Send via WhatsApp",
       thanks: "Thank you for celebrating our engagement with us 💍",
@@ -91,7 +90,6 @@ export default function WeddingLandingPage() {
       memories: "ذكرياتنا",
       confirm: "تأكيد الحضور",
       yourName: "الاسم",
-      guests: "عدد الأفراد",
       message: "رسالتك",
       send: "إرسال عبر واتساب",
       thanks: "شكرًا لمشاركتكم فرحتنا 💍",
@@ -131,7 +129,7 @@ export default function WeddingLandingPage() {
 
       {/* HERO */}
       <section
-        className="relative h-screen bg-cover bg-center flex items-center justify-center"
+        className="relative min-h-screen bg-cover bg-center flex items-center justify-center px-4"
         style={{
           backgroundImage:
             "url('https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=1600&auto=format&fit=crop')",
@@ -144,7 +142,7 @@ export default function WeddingLandingPage() {
             {t.hero}
           </p>
 
-          <h1 className="text-5xl md:text-8xl font-serif text-white mb-6">
+          <h1 className="text-4xl sm:text-5xl md:text-8xl font-serif text-white mb-6 leading-tight px-2">
             {t.bridename}
           </h1>
 
@@ -273,10 +271,6 @@ export default function WeddingLandingPage() {
                 form.elements.namedItem("name") as HTMLInputElement
               ).value;
 
-              const guests = (
-                form.elements.namedItem("guests") as HTMLInputElement
-              ).value;
-
               const message = (
                 form.elements.namedItem("message") as HTMLTextAreaElement
               ).value;
@@ -285,8 +279,6 @@ export default function WeddingLandingPage() {
 💍 RSVP
 
 Name: ${name}
-Guests: ${guests}
-
 Message:
 ${message}
 `;
@@ -304,14 +296,6 @@ ${message}
               type="text"
               name="name"
               placeholder={t.yourName}
-              className="w-full border p-4 rounded-2xl"
-              required
-            />
-
-            <input
-              type="number"
-              name="guests"
-              placeholder={t.guests}
               className="w-full border p-4 rounded-2xl"
               required
             />
