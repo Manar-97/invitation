@@ -15,8 +15,7 @@ export default function WeddingLandingPage() {
 
   useEffect(() => {
     const update = () => {
-      const now = new Date();
-      const diff = weddingDate.getTime() - now.getTime();
+      const diff = weddingDate.getTime() - new Date().getTime();
 
       if (diff <= 0) {
         setTime({ days: 0, hours: 0, minutes: 0 });
@@ -35,71 +34,76 @@ export default function WeddingLandingPage() {
     return () => clearInterval(interval);
   }, []);
 
-  const content = {
+  const t = {
     en: {
-      hero: "Engagement Celebration 💍",
-      name: "Ahmed & Malak",
-      celebrate: "Celebrate With Us",
+      hero: "Engagement Celebration",
+      names: "Ahmed & Malak",
       story: "Our Story",
-      storyTitle: "A Beautiful Journey",
-      storyDesc:
-        "Two hearts, one unforgettable journey filled with love, laughter, and memories.",
-      countdown: "Countdown to Our Big Day 💍",
+      storyText:
+        "A love story written by destiny, full of laughter, memories and beautiful moments.",
+      countdown: "Counting Down",
+      place2: "Works House",
+      place3: "Kornish El Maadi",
+      confirm: "RSVP",
+      send: "Send via WhatsApp",
+      name: "Your Name",
+      message: "Message",
+      thanks: "Thank you for celebrating with us 💍",
       days: "Days",
       hours: "Hours",
       minutes: "Minutes",
-      details: "Event Details",
-      place1: "Moonplaza",
-      place2: "Works House – Military Building",
-      place3: "Kornish El Maadi, Cairo",
-      rsvp: "Confirm Attendance",
-      nameph: "Your Name",
-      msgph: "Your Message",
-      send: "Send via WhatsApp",
-      thanks: "Thank you for celebrating with us 💍",
+      date: "19 June 2026 • 8:00 PM",
     },
     ar: {
-      hero: "حفل الخطوبة 💍",
-      name: "أحمد & ملك",
-      celebrate: "احتفلوا معنا",
+      hero: "حفل الخطوبة",
+      names: "أحمد و ملك",
       story: "قصتنا",
-      storyTitle: "رحلة جميلة",
-      storyDesc: "قلبان جمعتهما قصة حب لا تُنسى مليئة بالذكريات الجميلة.",
-      countdown: "العد التنازلي 💍",
+      storyText:
+        "قصة حب كتبها القدر مليئة بالضحك والذكريات واللحظات الجميلة.",
+      countdown: "العد التنازلي",
+      place2: "دار الاشغال العسكرية",
+      place3: "كورنيش المعادي",
+      confirm: "تأكيد الحضور",
+      send: "إرسال واتساب",
+      name: "الاسم",
+      message: "رسالتك",
+      thanks: "شكرًا لمشاركتكم فرحتنا 💍",
       days: "يوم",
       hours: "ساعة",
       minutes: "دقيقة",
-      details: "تفاصيل الحفل",
-      place1: "مون بلازا",
-      place2: "دار الاشغال العسكرية",
-      place3: "كورنيش المعادي - القاهرة",
-      rsvp: "تأكيد الحضور",
-      nameph: "الاسم",
-      msgph: "رسالتك",
-      send: "إرسال واتساب",
-      thanks: "شكرًا لمشاركتكم 💍",
+      date: "١٩ يونيو ٢٠٢٦ • ٨:٠٠ مساءً",
     },
-  };
-
-  const t = content[lang];
+  }[lang];
 
   return (
     <div
       dir={lang === "ar" ? "rtl" : "ltr"}
-      className="bg-[#0f0f0f] text-white min-h-screen overflow-x-hidden"
+      className="min-h-screen bg-[#fbf7f0] text-[#2b2622]"
+      style={{
+        fontFamily: "'Inter', sans-serif",
+      }}
     >
+      {/* GOOGLE FONTS */}
+      <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500&display=swap');
+      `}</style>
+
       {/* LANGUAGE */}
       <div className="fixed top-5 right-5 z-50 flex gap-2">
         <button
           onClick={() => setLang("en")}
-          className={`px-3 py-1 rounded-full text-sm ${lang === "en" ? "bg-white text-black" : "bg-white/20"
+          className={`px-4 py-2 rounded-full shadow ${lang === "en"
+            ? "bg-[#b08d57] text-white"
+            : "bg-white"
             }`}
         >
           EN
         </button>
         <button
           onClick={() => setLang("ar")}
-          className={`px-3 py-1 rounded-full text-sm ${lang === "ar" ? "bg-white text-black" : "bg-white/20"
+          className={`px-4 py-2 rounded-full shadow ${lang === "ar"
+            ? "bg-[#b08d57] text-white"
+            : "bg-white"
             }`}
         >
           AR
@@ -107,133 +111,149 @@ export default function WeddingLandingPage() {
       </div>
 
       {/* HERO */}
-      <section className="relative h-screen flex items-center justify-center">
-        <img
-          src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=2000&auto=format&fit=crop"
-          className="absolute inset-0 w-full h-full object-cover"
+      <section className="relative h-screen flex items-center justify-center text-center">
+        <div
+          className="absolute inset-0 bg-cover bg-center scale-105"
+          style={{
+            backgroundImage:
+              "url('https://images.unsplash.com/photo-1522673607200-164d1b6ce486?q=80&w=1600')",
+          }}
         />
-        <div className="absolute inset-0 bg-black/60" />
 
-        <div className="relative z-10 text-center px-4">
-          <p className="tracking-[6px] text-xs md:text-sm opacity-80">
+        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black/60" />
+
+        <div className="relative z-10 text-white px-6">
+          <p className="tracking-[6px] uppercase text-sm opacity-90">
             {t.hero}
           </p>
 
-          <h1 className="text-4xl md:text-8xl font-serif mt-4">
-            {t.name}
+          <h1
+            className="text-5xl md:text-7xl mt-6 mb-4"
+            style={{ fontFamily: "'Playfair Display', serif" }}
+          >
+            {t.names}
           </h1>
 
-          <p className="mt-4 text-sm md:text-lg opacity-90">
-            19 • 06 • 2026
-          </p>
+          <div className="w-24 h-[2px] bg-[#d8b37a] mx-auto my-5" />
 
-          <p className="text-sm md:text-lg opacity-90">
-            8:00 PM – 12:00 AM
-          </p>
-
-          <button className="mt-8 bg-white text-black px-6 py-3 rounded-full hover:scale-105 transition">
-            {t.celebrate}
-          </button>
+          <p className="text-sm md:text-lg opacity-90">{t.date}</p>
         </div>
       </section>
 
       {/* STORY */}
-      <section className="max-w-5xl mx-auto px-6 py-24 grid md:grid-cols-2 gap-10 items-center">
-        <img
-          src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?q=80&w=1200&auto=format&fit=crop"
-          className="rounded-3xl w-full h-[450px] object-cover"
-        />
+      <section className="max-w-5xl mx-auto px-6 py-24 text-center">
+        <h2
+          className="text-4xl mb-6"
+          style={{ fontFamily: "'Playfair Display', serif" }}
+        >
+          {t.story}
+        </h2>
 
-        <div>
-          <h2 className="text-3xl md:text-5xl font-serif mb-4">
-            {t.storyTitle}
-          </h2>
-          <p className="opacity-80 leading-8">{t.storyDesc}</p>
-        </div>
+        <p className="text-gray-600 leading-8">{t.storyText}</p>
       </section>
 
       {/* COUNTDOWN */}
-      <section className="bg-[#141414] py-20 text-center">
-        <h2 className="text-3xl md:text-5xl font-serif mb-10">
+      <section className="bg-white py-20 text-center">
+        <h2
+          className="text-4xl mb-10"
+          style={{ fontFamily: "'Playfair Display', serif" }}
+        >
           {t.countdown}
         </h2>
 
-        <div className="grid grid-cols-3 max-w-2xl mx-auto gap-4">
-          <div className="bg-white/10 p-6 rounded-2xl">
-            <h3 className="text-4xl">{time.days}</h3>
-            <p>{t.days}</p>
-          </div>
-
-          <div className="bg-white/10 p-6 rounded-2xl">
-            <h3 className="text-4xl">{time.hours}</h3>
-            <p>{t.hours}</p>
-          </div>
-
-          <div className="bg-white/10 p-6 rounded-2xl">
-            <h3 className="text-4xl">{time.minutes}</h3>
-            <p>{t.minutes}</p>
-          </div>
+        <div className="flex justify-center gap-6 flex-wrap">
+          {[
+            { v: time.days, l: t.days },
+            { v: time.hours, l: t.hours },
+            { v: time.minutes, l: t.minutes },
+          ].map((x, i) => (
+            <div
+              key={i}
+              className="bg-[#fbf7f0] px-8 py-6 rounded-2xl shadow-md min-w-[120px]"
+            >
+              <h3 className="text-4xl font-bold">{x.v}</h3>
+              <p className="text-sm text-gray-500">{x.l}</p>
+            </div>
+          ))}
         </div>
       </section>
 
-      {/* EVENT */}
+      {/* DETAILS */}
       <section className="max-w-5xl mx-auto px-6 py-24 grid md:grid-cols-2 gap-10">
-        <div className="bg-white text-black p-8 rounded-3xl">
-          <h3 className="text-2xl font-bold mb-4">{t.details}</h3>
-          <p>{t.place1}</p>
+        <div className="bg-white shadow-xl rounded-3xl p-8">
+          <h3
+            className="text-2xl mb-6"
+            style={{ fontFamily: "'Playfair Display', serif" }}
+          >
+            {lang === "en" ? "Event Details" : "تفاصيل الحفل"}
+          </h3>
+
+          <p>Moonplaza</p>
           <p>{t.place2}</p>
           <p>{t.place3}</p>
         </div>
 
-        <iframe
-          className="w-full h-[300px] rounded-3xl"
-          src="https://www.google.com/maps?q=Kornish+El+Maadi+Cairo&output=embed"
-        />
+        <div className="rounded-3xl overflow-hidden shadow-xl h-[300px]">
+          <iframe
+            className="w-full h-full"
+            src="https://www.google.com/maps?q=Moonplaza+Maadi+Cairo&output=embed"
+          />
+        </div>
       </section>
 
       {/* RSVP */}
-      <section className="max-w-3xl mx-auto px-6 py-24">
-        <h2 className="text-3xl font-serif text-center mb-8">
-          {t.rsvp}
-        </h2>
+      <section className="max-w-2xl mx-auto px-6 py-24">
+        <div className="bg-white shadow-2xl rounded-3xl p-10">
+          <h2
+            className="text-3xl text-center mb-8"
+            style={{ fontFamily: "'Playfair Display', serif" }}
+          >
+            {t.confirm}
+          </h2>
 
-        <form
-          className="space-y-4"
-          onSubmit={(e) => {
-            e.preventDefault();
+          <form
+            className="space-y-5"
+            onSubmit={(e) => {
+              e.preventDefault();
 
-            const form = e.currentTarget;
-            const name = (form.elements.namedItem("name") as HTMLInputElement).value;
-            const msg = (form.elements.namedItem("msg") as HTMLTextAreaElement).value;
+              const form = e.currentTarget;
 
-            const text = `💍 RSVP\n\nName: ${name}\nMessage: ${msg}`;
-            window.open(
-              `https://wa.me/201021319988?text=${encodeURIComponent(text)}`
-            );
-          }}
-        >
-          <input
-            name="name"
-            placeholder={t.nameph}
-            className="w-full p-4 rounded-xl text-black"
-          />
+              const name = (form.elements.namedItem("name") as HTMLInputElement).value;
+              const message = (form.elements.namedItem("message") as HTMLTextAreaElement).value;
 
-          <textarea
-            name="msg"
-            placeholder={t.msgph}
-            className="w-full p-4 rounded-xl text-black"
-          />
+              const text = `💍 RSVP\n\nName: ${name}\nMessage: ${message}`;
 
-          <button className="w-full bg-green-500 py-4 rounded-xl">
-            {t.send}
-          </button>
-        </form>
+              window.open(
+                `https://wa.me/201021319988?text=${encodeURIComponent(text)}`,
+                "_blank"
+              );
+            }}
+          >
+            <input
+              name="name"
+              placeholder={t.name}
+              className="w-full border rounded-xl p-4 focus:ring-2 focus:ring-[#b08d57]"
+            />
+
+            <textarea
+              name="message"
+              placeholder={t.message}
+              className="w-full border rounded-xl p-4 h-32 focus:ring-2 focus:ring-[#b08d57]"
+            />
+
+            <button className="w-full bg-[#b08d57] text-white py-4 rounded-xl hover:opacity-90 transition">
+              {t.send}
+            </button>
+          </form>
+        </div>
       </section>
 
       {/* FOOTER */}
-      <footer className="text-center py-10 opacity-70">
-        <h3 className="text-2xl font-serif">{t.name}</h3>
-        <p>{t.thanks}</p>
+      <footer className="text-center py-10 text-gray-500">
+        <p style={{ fontFamily: "'Playfair Display', serif" }}>
+          {t.names}
+        </p>
+        <p className="text-sm mt-2">{t.thanks}</p>
       </footer>
     </div>
   );
